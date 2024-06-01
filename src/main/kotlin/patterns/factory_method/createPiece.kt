@@ -27,8 +27,23 @@ fun createPieceEnum(notation: String): ChessPiece {
     }
 }
 
+fun createPieceEnumIs(directoryType: CheckMateIs) {
+    val objectType = when (directoryType) {
+        is CheckMateIs.QueenIs -> "${directoryType.file}${directoryType.rank}"
+        is CheckMateIs.PawnIs -> "${directoryType.file}${directoryType.rank}"
+        is CheckMateIs.KnightIs -> "${directoryType.file}${directoryType.rank}"
+    }
+    println(objectType)
+}
+
 fun main(){
     println(createPiece("q12"))
 /*    println(createPiece("z1222"))*/
     println(createPieceEnum("k34")).toString()
+    val queen = CheckMateIs.QueenIs('1', 'q')
+    val pawn = CheckMateIs.PawnIs('2', 'p')
+    val knight = CheckMateIs.KnightIs('2', 'p')
+    createPieceEnumIs(queen).toString()
+    createPieceEnumIs(pawn).toString()
+    createPieceEnumIs(knight).toString()
 }
