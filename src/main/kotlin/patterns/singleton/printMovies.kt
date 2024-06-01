@@ -22,6 +22,18 @@ fun main(){
     printMovies(myFavoriteMoviesEmpty)
     val myObj = Singleton.getInstance()
     val myObjLazy = Singleton.INSTANCE
+
+    val helloWorld = object {
+        val hello = "Hello"
+        val world = "World"
+
+        override fun toString(): String = "$hello $world"
+    }
+    println(helloWorld)
+
+    val instance = MyClass.create()
+    val instanceAnon = MyClassAnon.Companion
+    val instanceFactory = MyClassFactory
 }
 
 class Singleton private constructor() {
@@ -37,5 +49,25 @@ class Singleton private constructor() {
 
         val INSTANCE: Singleton by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { Singleton() }
 
+    }
+}
+
+class MyClass {
+    companion object Factory {
+        fun create(): MyClass = MyClass()
+    }
+}
+
+class MyClassAnon {
+    companion object {}
+}
+
+interface Factory<T> {
+    fun create(): T
+}
+
+class MyClassFactory {
+    companion object : Factory<MyClassFactory> {
+        override fun create(): MyClassFactory = MyClassFactory()
     }
 }
