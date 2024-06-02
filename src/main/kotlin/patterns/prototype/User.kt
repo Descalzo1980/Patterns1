@@ -20,28 +20,35 @@ enum class Permission {
 }
 
 val allUsers = mutableListOf<User>()
-fun createUser(name: String, role: Role) {
-    val existingUser = allUsers.find { it.role == role }
-    allUsers += existingUser?.copy(name = name) ?:
-    User(name = name, role = role, permissions = emptySet())
+
+fun createUser(name: String, role: Role, permissions: Set<Permission> = setOf(Permission.READ)) {
+    val existingUser = allUsers.find { it.name == name }
+    if (existingUser != null) {
+        allUsers.remove(existingUser)
+        val updatedPermissions = if (name == "Admin") {
+            setOf(Permission.WRITE)
+        } else {
+            permissions
+        }
+        allUsers += existingUser.copy(role = role, permissions = updatedPermissions)
+    } else {
+        val newPermissions = if (name == "Admin") {
+            setOf(Permission.WRITE)
+        } else {
+            permissions
+        }
+        allUsers += User(name = name, role = role, permissions = newPermissions)
+    }
 }
 
-fun main(){
+fun main() {
     createUser(name = "First", role = Role.REGULAR_USER)
     createUser(name = "Admin", role = Role.ADMIN)
     createUser(name = "SuperAdmin", role = Role.SUPER_ADMIN)
-    val user = User(name = "Alice", role = Role.ADMIN, permissions = setOf(Permission.READ, Permission.WRITE))
     createUser("User1", role = Role.REGULAR_USER)
     createUser("User2", role = Role.REGULAR_USER)
 
-    println(user.hasPermission(Permission.READ))
-    println(user.hasPermission(Permission.WRITE))
-
-
-    val permissionsAsString = user.permissions.map { it.name }
-    println(permissionsAsString)
-
-    allUsers.forEach{
-        println("Name  ${it.name} Role ${it.role}")
+    allUsers.forEach {
+        println("Name: ${it.name}, Role: ${it.role}, Permissions: ${it.permissions}")
     }
 }
