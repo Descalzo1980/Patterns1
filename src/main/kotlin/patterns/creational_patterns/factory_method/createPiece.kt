@@ -1,4 +1,4 @@
-package patterns.factory_method
+package patterns.creational_patterns.factory_method
 
 fun createPiece(notation: String): ChessPiece {
     val (type, file, rank) = notation.toCharArray()

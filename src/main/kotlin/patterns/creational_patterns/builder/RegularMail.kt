@@ -1,4 +1,4 @@
-package patterns.builder
+package patterns.creational_patterns.builder
 // bad
 data class RegularMail(
     val to: List<String>,
@@ -73,7 +73,7 @@ class MailBuilder {
         return Mail(toWhom, cc, title, message, important)
     }
 
-    fun message(message: String): MailBuilder{
+    fun message(message: String): MailBuilder {
         this.message = message
         return this
     }

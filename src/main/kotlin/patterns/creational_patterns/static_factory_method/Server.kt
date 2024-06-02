@@ -1,4 +1,4 @@
-package patterns.static_factory_method
+package patterns.creational_patterns.static_factory_method
 
 class Server(port: Long) {
 
@@ -14,7 +14,7 @@ class Server(port: Long) {
 fun main(){
     val server = Server(8080)
     println(server)
-    Server.Parser.withPost(8080)
+    Server.withPost(8080)
 /*
     val serverPrivate = ServerPrivate.withPostPrivate(3333)
 */

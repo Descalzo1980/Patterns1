@@ -1,4 +1,4 @@
-package patterns.singleton
+package patterns.creational_patterns.singleton
 
 object Logger {
     init {
@@ -32,7 +32,7 @@ fun main(){
     println(helloWorld)
 
     val instance = MyClass.create()
-    val instanceAnon = MyClassAnon.Companion
+    val instanceAnon = MyClassAnon
     val instanceFactory = MyClassFactory
 }
 

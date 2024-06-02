@@ -1,4 +1,4 @@
-package patterns.abstract_factory
+package patterns.creational_patterns.abstract_factory
 
 interface Weapon {
 
@@ -36,8 +36,8 @@ class Katana: Weapon {
 }
 
 fun main(){
-    val factory: WeaponFactory = Crossbow.Factory
-    val factory1: WeaponFactory = Katana.Factory
+    val factory: WeaponFactory = Crossbow
+    val factory1: WeaponFactory = Katana
     val crossbow = factory.buildWeapon()
     val katana = factory1.buildWeapon()
     println(crossbow.use())

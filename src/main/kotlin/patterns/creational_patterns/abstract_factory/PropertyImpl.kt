@@ -1,4 +1,4 @@
-package patterns.abstract_factory
+package patterns.creational_patterns.abstract_factory
 
 data class PropertyImpl(
     override val name: String,

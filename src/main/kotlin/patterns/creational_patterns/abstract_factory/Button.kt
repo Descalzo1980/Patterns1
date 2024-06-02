@@ -1,4 +1,4 @@
-package patterns.abstract_factory
+package patterns.creational_patterns.abstract_factory
 
 interface Button {
     fun paint()
@@ -37,7 +37,7 @@ interface GUIFactory{
     fun createCheckBox(): CheckBox
 }
 
-class WinFactory: GUIFactory{
+class WinFactory: GUIFactory {
     override fun createButton(): Button {
         return WinButton()
     }
@@ -47,7 +47,7 @@ class WinFactory: GUIFactory{
     }
 }
 
-class MacFactory: GUIFactory{
+class MacFactory: GUIFactory {
     override fun createButton(): Button {
         return MacBookButton()
     }

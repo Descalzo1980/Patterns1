@@ -1,7 +1,7 @@
-package patterns.factory_method
+package patterns.creational_patterns.factory_method
 
 
-sealed class CheckMateIs : ChessPiece{
+sealed class CheckMateIs : ChessPiece {
     abstract fun getSing(): PieceType
 
     data class PawnIs(

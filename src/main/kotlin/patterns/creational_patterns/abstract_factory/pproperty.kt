@@ -1,8 +1,8 @@
-package patterns.abstract_factory
+package patterns.creational_patterns.abstract_factory
 
 import java.lang.IllegalArgumentException
 
-fun property(prop: String): Property{
+fun property(prop: String): Property {
     val (name,value) = prop.split(":")
     return when(name){
         "port" -> IntProperty(name, value.trim().toInt())
@@ -11,7 +11,7 @@ fun property(prop: String): Property{
     }
 }
 
-fun server(propertyString: List<String>): ServerConfiguration{
+fun server(propertyString: List<String>): ServerConfiguration {
     val parsedProperties = mutableListOf<Property>()
     for (p in propertyString){
         parsedProperties += property(p)

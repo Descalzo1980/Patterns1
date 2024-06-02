@@ -1,4 +1,4 @@
-package patterns.prototype
+package patterns.creational_patterns.prototype
 
 data class User(
     val name: String,
