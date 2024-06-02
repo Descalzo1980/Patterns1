@@ -41,6 +41,19 @@ fun createUser(name: String, role: Role, permissions: Set<Permission> = setOf(Pe
     }
 }
 
+data class GraphicElement(
+    val color: String,
+    val points: List<String>,
+    var texture: String? = null,
+) {
+    init {
+        if (texture == null) {
+            texture = "Some complex initialization logic here (loading textures, calculating geometry, etc.)"
+        }
+    }
+}
+
+
 fun main() {
     createUser(name = "First", role = Role.REGULAR_USER)
     createUser(name = "Admin", role = Role.ADMIN)
@@ -51,4 +64,9 @@ fun main() {
     allUsers.forEach {
         println("Name: ${it.name}, Role: ${it.role}, Permissions: ${it.permissions}")
     }
+
+    val initialPoints = listOf("x1", "y1", "x2", "y2")
+    val originalElement = GraphicElement("Red", initialPoints)
+    val clonedElement = originalElement.copy(color = "Blue")
+    println(clonedElement)
 }
