@@ -25,4 +25,18 @@ fun main() {
     // Код не зависит от конкретной реализации
     logger.log("FileLogger")
     consoleLogger.log("ConsoleLogger")
+
+    val plusReceiver: Int.(Int) -> Int = { this + it }
+    val plusNorm: (Int, Int) -> Int = { it, other -> it + other }
+
+
+    val plusReceiverResult = 5.plusReceiver(1)
+    println(plusReceiverResult)
+
+
+    val plusNormResult = plusNorm(5,1)
+    println(plusNormResult)
+
 }
+
+
