@@ -88,6 +88,7 @@ fun main(){
 
     christmasTreeWithGarlands()
     christmasTreeWithBubbleLights()
+    summer()
 }
 
 //********************************************************************************
@@ -137,5 +138,30 @@ fun christmasTreeWithGarlands() {
     println(decoratedChristmasTree)
 }
 
+
+interface Beer {
+    fun currentBeer() : String
+}
+
+class Summer : Beer {
+    override fun currentBeer(): String {
+        return ("Current Beer is ${javaClass.simpleName}")
+    }
+}
+
+class HolidayPlans(beer: Beer) : Beer by beer {
+    override fun currentBeer(): String {
+        return ("Current plans is drink and sleep") + holidayPlans()
+    }
+    private fun holidayPlans(): String {
+        return " with beer"
+    }
+}
+
+fun summer(){
+    val plans = HolidayPlans(Summer())
+    val beer = plans.currentBeer()
+    println(beer)
+}
 
 
