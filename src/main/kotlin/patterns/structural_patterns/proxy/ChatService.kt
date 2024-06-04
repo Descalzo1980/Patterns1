@@ -46,10 +46,39 @@ class ChatServiceSecureProxy(private val encoder: Encoder) : ChatService {
         return decodedMessage
     }
 }
+
+// Step 1: Interface
+interface Database {
+    fun query(dbQuery: String): String
+}
+// Step 2: Real Object
+class RealDatabase : Database {
+    override fun query(dbQuery: String): String {
+        // Simulating a database operation
+        return "Executing query: $dbQuery"
+    }
+}
+// Step 3: Proxy Object
+class ProxyDatabase : Database {
+    private val realDatabase = RealDatabase()
+    private val restrictedQueries = listOf("DROP", "DELETE")
+    override fun query(dbQuery: String): String {
+        if (restrictedQueries.any { dbQuery.contains(it, ignoreCase = true) }) {
+            return "Query not allowed!"
+        }
+        // Logging operation
+        println("Logging: $dbQuery")
+        return realDatabase.query(dbQuery)
+    }
+}
 fun main() {
     val encoder = SimpleEncoder()
     val secureChatService = ChatServiceSecureProxy(encoder)
     secureChatService.sendMessage("Hello, World!")
     val receivedMessage = secureChatService.getMessage()
     println("Received message: $receivedMessage")
+
+    val database = ProxyDatabase()
+    println(database.query("SELECT * FROM users"))
+    println(database.query("DROP TABLE users"))
 }
