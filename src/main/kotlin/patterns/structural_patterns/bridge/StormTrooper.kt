@@ -7,6 +7,14 @@ typealias Meters = Int
 const val RIFLE_DAMAGE: PointsOfDamage = 3L
 const val REGULAR_SPEED: Meters = 1
 
+interface TrooperNew {
+    fun move(x: Long, y: Long)
+    fun attackRebel(x: Long, y: Long)
+    fun retreat() {
+        println("Retreating!")
+    }
+}
+
 interface Legs {
     fun move(x: Long, y: Long): Meters
 }
@@ -17,8 +25,8 @@ interface Weapon {
 
 data class StormTrooperNew(
     private val weapon: Weapon,
-    private val legs: Legs
-): Trooper {
+    private val legs: Legs,
+): TrooperNew {
     override fun move(x: Long, y: Long) {
         legs.move(x, y)
     }
@@ -27,7 +35,9 @@ data class StormTrooperNew(
     }
 
     override fun toString(): String {
-        return "StormTrooperNew(weapon=${weapon::class.simpleName}, legs=${legs::class.simpleName})"
+        return "StormTrooperNew(" +
+                "weapon=${weapon::class.simpleName}," +
+                " legs=${legs::class.simpleName},"
     }
 }
 
