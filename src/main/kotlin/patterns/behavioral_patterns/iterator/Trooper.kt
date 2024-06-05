@@ -1,5 +1,8 @@
 package patterns.behavioral_patterns.iterator
 
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+
 open class Trooper() {
     fun move(x: Int, y: Int) {
         println("Moving to $x:$y")

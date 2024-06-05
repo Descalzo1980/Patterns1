@@ -1,3 +1,5 @@
+package examples
+
 import java.util.*
 import kotlin.random.Random
 
