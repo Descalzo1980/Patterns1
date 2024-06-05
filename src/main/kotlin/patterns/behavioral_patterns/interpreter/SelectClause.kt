@@ -1,5 +1,9 @@
 package patterns.behavioral_patterns.interpreter
 
+@DslMarker
+annotation class SqlDslMarker
+
+@SqlDslMarker
 class SelectClause(private vararg val columns: String) {
     private lateinit var from: FromClause
     fun from(
@@ -12,7 +16,7 @@ class SelectClause(private vararg val columns: String) {
     override fun toString() = "SELECT ${columns.joinToString(separator =
     ", ")} $from"
 }
-
+@SqlDslMarker
 class FromClause(private val table: String) {
     private lateinit var where: WhereClause
     fun where(conditions: String) = this.apply {
@@ -20,7 +24,7 @@ class FromClause(private val table: String) {
     }
     override fun toString() = "FROM $table $where"
 }
-
+@SqlDslMarker
 class WhereClause(private val conditions: String) {
     override fun toString() = "WHERE $conditions"
 }
