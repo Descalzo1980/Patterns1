@@ -3,6 +3,8 @@ package patterns.reactive_and_concurrent_patterns.fp.pattern_matching
 fun main(){
 
     println(getSound(Cat()))
+    val animal = Cat()
+    println(animal.getSound(animal))
 }
 
 fun getSound(animal: Animal): String = when(animal){
@@ -12,7 +14,7 @@ fun getSound(animal: Animal): String = when(animal){
 }
 
 interface Animal {
-/*    fun getSound(animal: Animal): String {
+    fun getSound(animal: Animal): String {
         var sound: String? = null;
         if (animal is Cat) {
             sound = animal.purr();
@@ -23,7 +25,7 @@ interface Animal {
             throw RuntimeException();
         }
         return sound;
-    }*/
+    }
 }
 
 class Cat : Animal {
