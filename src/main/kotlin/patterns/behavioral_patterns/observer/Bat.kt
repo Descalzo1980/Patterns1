@@ -16,12 +16,11 @@ fun main() {
     catTheConductor.conduct()
 
     val sensor = Sensor()
+    val sensor1 = Sensor1(10)
     val monitor = Monitor(sensor)
+    val monitor1 = Monitor1(sensor1)
     sensor.temp = 5
-    sensor.detach(monitor)
-    val newSensor = Sensor()
-    val newMonitor = Monitor(newSensor)
-    newSensor.temp = 10
+    sensor1.temp = -5
 }
 
 interface Observer {
@@ -50,6 +49,25 @@ class Sensor : Subject() {
             field = value
             callObserver()
         }
+}
+
+class Sensor1(init: Int) : Subject() {
+    var temp: Int = init
+        set(value) {
+            field = value
+            callObserver()
+        }
+}
+
+class Monitor1(private val sensor: Sensor1) : Observer{
+    init {
+        sensor.attach(this)
+    }
+
+    override fun update() {
+        val newTemp = sensor.temp
+        println("Update Monitor, new temperature $newTemp ")
+    }
 }
 
 class Monitor(private val sensor: Sensor) : Observer{
