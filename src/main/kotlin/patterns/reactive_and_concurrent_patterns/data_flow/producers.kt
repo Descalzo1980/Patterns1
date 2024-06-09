@@ -14,7 +14,6 @@ fun main() {
                 send(it)
             }
         }
-
         launch {
             chan.consumeEach {
                 println(it)
