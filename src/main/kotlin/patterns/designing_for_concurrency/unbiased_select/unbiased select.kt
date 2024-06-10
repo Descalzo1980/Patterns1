@@ -1,6 +1,7 @@
 package patterns.designing_for_concurrency.unbiased_select
 
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.produce
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
@@ -20,6 +21,7 @@ fun main() {
     }
 }
 
+@OptIn(ExperimentalCoroutinesApi::class)
 fun CoroutineScope.fastProducer(
     movieName: String
 ) = produce(capacity = 1) {
