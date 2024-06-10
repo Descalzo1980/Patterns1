@@ -11,6 +11,7 @@ repositories {
 }
 
 dependencies {
+    implementation("io.reactivex.rxjava3:rxjava:3.1.8")
     testImplementation("org.jetbrains.kotlin:kotlin-test:1.9.24")
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.5.31")
     implementation("com.google.code.gson:gson:2.11.0")

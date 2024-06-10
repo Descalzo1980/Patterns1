@@ -12,6 +12,19 @@ fun main() {
     flatMapLatest()
     distinctUntilChanged()
     combine()
+    combine1()
+}
+
+fun combine1() {
+    runBlocking {
+        val flowA = ('A'..'Z').asFlow()
+        val flowB = ('a'..'z').asFlow()
+        val flowC = (1..100).asFlow()
+
+        flowA.zip(flowB) { a, b -> a.toString() + b }
+            .zip(flowC) { ab, c -> ab + c }
+            .collect { println(it) }
+    }
 }
 
 fun combine() {
