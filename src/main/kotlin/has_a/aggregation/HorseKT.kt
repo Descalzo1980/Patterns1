@@ -2,9 +2,9 @@ package has_a.aggregation
 
 import has_a.parent_class.HalterKT
 
-class Horse {
+/*class Horse {
     val halter: HalterKT? = null
-}
+}*/
 
 /**
  * Агрегация - это вид ассоциации,

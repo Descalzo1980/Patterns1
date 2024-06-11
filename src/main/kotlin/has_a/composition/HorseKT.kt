@@ -2,9 +2,9 @@ package has_a.composition
 
 import has_a.parent_class.HalterKT
 
-class Horse {
+/*class Horse {
     private val halter: HalterKT = HalterKT()
-}
+}*/
 
 /**
  * Композиция - это тоже вид ассоциации, но с более тесной связью.
